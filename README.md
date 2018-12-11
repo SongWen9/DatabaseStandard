@@ -2,5 +2,4 @@
 This repo contains Public Releases and Offical Resources from XMU'18 OOAD Database Working Group
 
 ## Resources
- * [sql脚本](https://app.swaggerhub.com/apis/OOAD2018Controller/OOAD2018RestfulAPInew/1.0-oas3)
- * [数据字典](https://docs.qq.com/doc/DVWpKeFVhSGNlc1Nq)
+ * [数据字典](https://github.com/Black-W/DatabaseStandard/blob/master/%E6%95%B0%E6%8D%AE%E5%AD%97%E5%85%B8.md)
