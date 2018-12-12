@@ -12,4 +12,3 @@ This repo contains Public Releases and Offical Resources from XMU'18 OOAD Databa
 | 版本 | 出版日期 | 修订表 | 修订原因 | 作者 | 
 | --- | --- | --- | --- | --- |
 | 1.0 | 2018.12.12 | 初稿 (表中暂未插入数据) |  | 数据库标准组  |
-|  |  |  |  |   |
