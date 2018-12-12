@@ -92,7 +92,7 @@ DROP TABLE IF EXISTS `klass`;
 CREATE TABLE `klass` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `course_id` bigint(20) unsigned NOT NULL COMMENT '课程id',
-  `grade` tinyint(4) unsigned NOT NULL COMMENT '年级',
+  `grade` int(10) unsigned NOT NULL COMMENT '年级',
   `klass_serial` tinyint(4) unsigned NOT NULL COMMENT '班级序号',
   `klass_time` varchar(20) NOT NULL COMMENT '上课时间',
   `klass_location` varchar(20) NOT NULL COMMENT '上课地点',
