@@ -22,8 +22,8 @@ DROP TABLE IF EXISTS `admin`;
 
 CREATE TABLE `admin` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `account` varchar(20) NOT NULL,
-  `password` varchar(20) NOT NULL,
+  `account` varchar(20) NOT NULL COMMENT '账号',
+  `password` varchar(20) NOT NULL COMMENT '密码',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -85,6 +85,20 @@ CREATE TABLE `course` (
 
 /*Data for the table `course` */
 
+/*Table structure for table `course_member_limit_strategy` */
+
+DROP TABLE IF EXISTS `course_member_limit_strategy`;
+
+CREATE TABLE `course_member_limit_strategy` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `course_id` tinyint(4) unsigned NOT NULL COMMENT '课程id',
+  `min_member` tinyint(4) unsigned DEFAULT NULL COMMENT '队伍中选该课程最少人数',
+  `max_member` tinyint(4) unsigned DEFAULT NULL COMMENT '队伍中选该课程最多人数',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `course_member_limit_strategy` */
+
 /*Table structure for table `klass` */
 
 DROP TABLE IF EXISTS `klass`;
@@ -102,18 +116,18 @@ CREATE TABLE `klass` (
 
 /*Data for the table `klass` */
 
-/*Table structure for table `klass_round_table` */
+/*Table structure for table `klass_round` */
 
-DROP TABLE IF EXISTS `klass_round_table`;
+DROP TABLE IF EXISTS `klass_round`;
 
-CREATE TABLE `klass_round_table` (
+CREATE TABLE `klass_round` (
   `klass_id` bigint(20) unsigned NOT NULL COMMENT '课程id',
   `round_id` bigint(20) unsigned NOT NULL COMMENT '轮次id',
   `enroll_number` tinyint(3) unsigned DEFAULT NULL COMMENT '某班级，某轮次队伍报名次数限制',
   PRIMARY KEY (`klass_id`,`round_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-/*Data for the table `klass_round_table` */
+/*Data for the table `klass_round` */
 
 /*Table structure for table `klass_seminar` */
 
@@ -132,11 +146,11 @@ CREATE TABLE `klass_seminar` (
 
 /*Data for the table `klass_seminar` */
 
-/*Table structure for table `klass_student_table` */
+/*Table structure for table `klass_student` */
 
-DROP TABLE IF EXISTS `klass_student_table`;
+DROP TABLE IF EXISTS `klass_student`;
 
-CREATE TABLE `klass_student_table` (
+CREATE TABLE `klass_student` (
   `klass_id` bigint(20) unsigned NOT NULL COMMENT '班级id',
   `student_id` bigint(20) unsigned NOT NULL COMMENT '学生id',
   `course_id` bigint(20) unsigned NOT NULL COMMENT '课程id',
@@ -145,7 +159,7 @@ CREATE TABLE `klass_student_table` (
   KEY `idx_team_id` (`team_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-/*Data for the table `klass_student_table` */
+/*Data for the table `klass_student` */
 
 /*Table structure for table `member_limit_strategy` */
 
@@ -159,21 +173,6 @@ CREATE TABLE `member_limit_strategy` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `member_limit_strategy` */
-
-/*Table structure for table `member_sex_strategy` */
-
-DROP TABLE IF EXISTS `member_sex_strategy`;
-
-CREATE TABLE `member_sex_strategy` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `min_male` tinyint(4) unsigned DEFAULT NULL COMMENT '最少男生',
-  `max_male` tinyint(4) unsigned DEFAULT NULL COMMENT '最多男生',
-  `min_female` tinyint(4) unsigned DEFAULT NULL COMMENT '最少女生',
-  `max_female` tinyint(4) unsigned DEFAULT NULL COMMENT '最多女生',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-/*Data for the table `member_sex_strategy` */
 
 /*Table structure for table `question` */
 
@@ -202,7 +201,7 @@ DROP TABLE IF EXISTS `round`;
 
 CREATE TABLE `round` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `course_id` bigint(20) unsigned NOT NULL,
+  `course_id` bigint(20) unsigned NOT NULL COMMENT '课程id',
   `round_serial` tinyint(4) unsigned NOT NULL COMMENT '轮次序号',
   `presentation_score_method` tinyint(4) unsigned NOT NULL COMMENT '本轮展示分数计算方法',
   `report_score_method` tinyint(4) unsigned NOT NULL COMMENT '本轮报告分数计算方法',
@@ -213,21 +212,21 @@ CREATE TABLE `round` (
 
 /*Data for the table `round` */
 
-/*Table structure for table `round_score_table` */
+/*Table structure for table `round_score` */
 
-DROP TABLE IF EXISTS `round_score_table`;
+DROP TABLE IF EXISTS `round_score`;
 
-CREATE TABLE `round_score_table` (
-  `round_id` bigint(20) unsigned NOT NULL,
-  `team_id` bigint(20) unsigned NOT NULL,
-  `total_score` decimal(4,1) unsigned DEFAULT NULL,
-  `presentation_score` decimal(4,1) unsigned DEFAULT NULL,
-  `question_score` decimal(4,1) unsigned DEFAULT NULL,
-  `report_score` decimal(4,1) unsigned DEFAULT NULL,
+CREATE TABLE `round_score` (
+  `round_id` bigint(20) unsigned NOT NULL COMMENT '轮次id',
+  `team_id` bigint(20) unsigned NOT NULL COMMENT '小组id',
+  `total_score` decimal(4,1) unsigned DEFAULT NULL COMMENT '总成绩',
+  `presentation_score` decimal(4,1) unsigned DEFAULT NULL COMMENT '展示成绩',
+  `question_score` decimal(4,1) unsigned DEFAULT NULL COMMENT '提问成绩',
+  `report_score` decimal(4,1) unsigned DEFAULT NULL COMMENT '报告成绩',
   PRIMARY KEY (`round_id`,`team_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-/*Data for the table `round_score_table` */
+/*Data for the table `round_score` */
 
 /*Table structure for table `seminar` */
 
@@ -251,21 +250,21 @@ CREATE TABLE `seminar` (
 
 /*Data for the table `seminar` */
 
-/*Table structure for table `seminar_score_table` */
+/*Table structure for table `seminar_score` */
 
-DROP TABLE IF EXISTS `seminar_score_table`;
+DROP TABLE IF EXISTS `seminar_score`;
 
-CREATE TABLE `seminar_score_table` (
-  `klass_seminar_id` bigint(20) unsigned NOT NULL,
-  `team_id` bigint(20) unsigned NOT NULL,
-  `total_score` decimal(4,1) unsigned DEFAULT NULL,
-  `presentaton_score` decimal(4,1) unsigned DEFAULT NULL,
-  `question_score` decimal(4,1) unsigned DEFAULT NULL,
-  `report_score` decimal(4,1) unsigned DEFAULT NULL,
+CREATE TABLE `seminar_score` (
+  `klass_seminar_id` bigint(20) unsigned NOT NULL COMMENT '班级讨论课id',
+  `team_id` bigint(20) unsigned NOT NULL COMMENT '小组id',
+  `total_score` decimal(4,1) unsigned DEFAULT NULL COMMENT '总成绩',
+  `presentaton_score` decimal(4,1) unsigned DEFAULT NULL COMMENT '展示成绩',
+  `question_score` decimal(4,1) unsigned DEFAULT NULL COMMENT '提问成绩',
+  `report_score` decimal(4,1) unsigned DEFAULT NULL COMMENT '报告成绩',
   PRIMARY KEY (`klass_seminar_id`,`team_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-/*Data for the table `seminar_score_table` */
+/*Data for the table `seminar_score` */
 
 /*Table structure for table `share_seminar_application` */
 
@@ -314,7 +313,6 @@ CREATE TABLE `student` (
   `is_active` tinyint(4) unsigned NOT NULL COMMENT '账号是否激活',
   `student_name` varchar(10) NOT NULL COMMENT '学生姓名',
   `email` varchar(30) NOT NULL COMMENT '邮箱地址',
-  `sex` tinyint(4) unsigned NOT NULL COMMENT '性别，0男，1女',
   PRIMARY KEY (`id`),
   UNIQUE KEY `uk_account` (`account`),
   KEY `idx_password` (`password`)
@@ -351,7 +349,7 @@ CREATE TABLE `team` (
   `leader_id` bigint(20) unsigned NOT NULL COMMENT '队长的学生id',
   `team_name` varchar(10) NOT NULL COMMENT '队伍名称',
   `team_serial` tinyint(4) unsigned NOT NULL COMMENT '队伍序号',
-  `is_valid` tinyint(4) unsigned NOT NULL COMMENT '队伍是否已经合法成立',
+  `status` tinyint(4) unsigned NOT NULL COMMENT '队伍状态，不合法0、合法1、审核中2',
   PRIMARY KEY (`id`),
   KEY `idx_course_id` (`course_id`),
   KEY `idx_leader_id` (`leader_id`),
@@ -360,16 +358,45 @@ CREATE TABLE `team` (
 
 /*Data for the table `team` */
 
+/*Table structure for table `team_and_strategy` */
+
+DROP TABLE IF EXISTS `team_and_strategy`;
+
+CREATE TABLE `team_and_strategy` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `strategy_1_name` varchar(50) NOT NULL COMMENT '“与”组队策略1实现类名称',
+  `strategy_1_id` bigint(20) unsigned NOT NULL COMMENT '“与”组队策略1_id',
+  `strategy_2_name` varchar(50) NOT NULL COMMENT '“与”组队策略2实现类名称',
+  `strategy_2_id` bigint(20) unsigned NOT NULL COMMENT '“与”组队策略2_id',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `team_and_strategy` */
+
+/*Table structure for table `team_or_strategy` */
+
+DROP TABLE IF EXISTS `team_or_strategy`;
+
+CREATE TABLE `team_or_strategy` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `strategy_1_name` varchar(50) NOT NULL COMMENT '“或”组队策略1实现类名称',
+  `strategy_1_id` bigint(20) unsigned NOT NULL COMMENT '“或”组队策略1_id',
+  `strategy_2_name` varchar(50) NOT NULL COMMENT '“或”组队策略2实现类名称',
+  `strategy_2_id` bigint(20) unsigned NOT NULL COMMENT '“或”组队策略2_id',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `team_or_strategy` */
+
 /*Table structure for table `team_strategy` */
 
 DROP TABLE IF EXISTS `team_strategy`;
 
 CREATE TABLE `team_strategy` (
-  `course_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `strategy_id` bigint(20) unsigned NOT NULL,
-  `strategy_name` varchar(50) NOT NULL,
-  PRIMARY KEY (`course_id`,`strategy_id`,`strategy_name`),
-  KEY `pk_course_id` (`course_id`)
+  `course_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '课程id',
+  `strategy_id` bigint(20) unsigned NOT NULL COMMENT '策略id',
+  `strategy_name` varchar(50) NOT NULL COMMENT '组队策略实现类名称',
+  PRIMARY KEY (`course_id`,`strategy_id`,`strategy_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `team_strategy` */
