@@ -185,7 +185,7 @@ CREATE TABLE `question` (
   `team_id` bigint(20) unsigned NOT NULL COMMENT '提问小组的id',
   `student_id` bigint(20) unsigned NOT NULL COMMENT '提问学生的id',
   `is_selected` tinyint(4) unsigned NOT NULL COMMENT '是否被选中',
-  `score` decimal(4,1) unsigned DEFAULT NULL COMMENT '提问分数',
+  `score` decimal(4,1) DEFAULT NULL COMMENT '提问分数',
   PRIMARY KEY (`id`),
   KEY `idx_team_id` (`team_id`),
   KEY `idx_klass_seminar_id` (`klass_seminar_id`),
@@ -219,10 +219,10 @@ DROP TABLE IF EXISTS `round_score`;
 CREATE TABLE `round_score` (
   `round_id` bigint(20) unsigned NOT NULL COMMENT '轮次id',
   `team_id` bigint(20) unsigned NOT NULL COMMENT '小组id',
-  `total_score` decimal(4,1) unsigned DEFAULT NULL COMMENT '总成绩',
-  `presentation_score` decimal(4,1) unsigned DEFAULT NULL COMMENT '展示成绩',
-  `question_score` decimal(4,1) unsigned DEFAULT NULL COMMENT '提问成绩',
-  `report_score` decimal(4,1) unsigned DEFAULT NULL COMMENT '报告成绩',
+  `total_score` decimal(4,1) DEFAULT NULL COMMENT '总成绩',
+  `presentation_score` decimal(4,1) DEFAULT NULL COMMENT '展示成绩',
+  `question_score` decimal(4,1) DEFAULT NULL COMMENT '提问成绩',
+  `report_score` decimal(4,1) DEFAULT NULL COMMENT '报告成绩',
   PRIMARY KEY (`round_id`,`team_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -257,10 +257,10 @@ DROP TABLE IF EXISTS `seminar_score`;
 CREATE TABLE `seminar_score` (
   `klass_seminar_id` bigint(20) unsigned NOT NULL COMMENT '班级讨论课id',
   `team_id` bigint(20) unsigned NOT NULL COMMENT '小组id',
-  `total_score` decimal(4,1) unsigned DEFAULT NULL COMMENT '总成绩',
-  `presentaton_score` decimal(4,1) unsigned DEFAULT NULL COMMENT '展示成绩',
-  `question_score` decimal(4,1) unsigned DEFAULT NULL COMMENT '提问成绩',
-  `report_score` decimal(4,1) unsigned DEFAULT NULL COMMENT '报告成绩',
+  `total_score` decimal(4,1) DEFAULT NULL COMMENT '总成绩',
+  `presentaton_score` decimal(4,1) DEFAULT NULL COMMENT '展示成绩',
+  `question_score` decimal(4,1) DEFAULT NULL COMMENT '提问成绩',
+  `report_score` decimal(4,1) DEFAULT NULL COMMENT '报告成绩',
   PRIMARY KEY (`klass_seminar_id`,`team_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
