@@ -40,7 +40,7 @@ CREATE TABLE `attendance` (
   `team_order` tinyint(4) unsigned NOT NULL COMMENT '该队伍顺序',
   `is_present` tinyint(4) unsigned NOT NULL COMMENT '是否正在进行',
   `report_name` varchar(30) DEFAULT NULL COMMENT '提交的报告文件名',
-  `reprot_url` varchar(50) DEFAULT NULL COMMENT '提交的报告文件位置',
+  `report_url` varchar(50) DEFAULT NULL COMMENT '提交的报告文件位置',
   `ppt_name` varchar(30) DEFAULT NULL COMMENT '提交的PPT文件名',
   `ppt_url` varchar(50) DEFAULT NULL COMMENT '提交的PPT文件位置',
   PRIMARY KEY (`id`),
