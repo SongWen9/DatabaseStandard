@@ -312,7 +312,7 @@ CREATE TABLE `student` (
   `password` varchar(20) NOT NULL COMMENT '账户密码',
   `is_active` tinyint(4) unsigned NOT NULL COMMENT '账号是否激活',
   `student_name` varchar(10) NOT NULL COMMENT '学生姓名',
-  `email` varchar(30) NOT NULL COMMENT '邮箱地址',
+  `email` varchar(30) DEFAULT NULL COMMENT '邮箱地址',
   PRIMARY KEY (`id`),
   UNIQUE KEY `uk_account` (`account`),
   KEY `idx_password` (`password`)
