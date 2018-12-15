@@ -91,7 +91,7 @@ DROP TABLE IF EXISTS `course_member_limit_strategy`;
 
 CREATE TABLE `course_member_limit_strategy` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `course_id` tinyint(4) unsigned NOT NULL COMMENT '课程id',
+  `course_id` bigint(20) unsigned NOT NULL COMMENT '课程id',
   `min_member` tinyint(4) unsigned DEFAULT NULL COMMENT '队伍中选该课程最少人数',
   `max_member` tinyint(4) unsigned DEFAULT NULL COMMENT '队伍中选该课程最多人数',
   PRIMARY KEY (`id`)
