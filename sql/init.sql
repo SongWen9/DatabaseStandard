@@ -315,6 +315,7 @@ CREATE TABLE `student` (
   `email` varchar(30) DEFAULT NULL COMMENT '邮箱地址',
   PRIMARY KEY (`id`),
   UNIQUE KEY `uk_account` (`account`),
+  UNIQUE KEY `uk_email` (`email`),
   KEY `idx_password` (`password`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
@@ -333,6 +334,7 @@ CREATE TABLE `teacher` (
   `email` varchar(30) NOT NULL COMMENT '邮箱地址',
   PRIMARY KEY (`id`),
   UNIQUE KEY `uk_account` (`account`),
+  UNIQUE KEY `uk_email` (`email`),
   KEY `idx_password` (`password`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
