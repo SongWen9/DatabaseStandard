@@ -265,8 +265,8 @@ CREATE TABLE `course_member_limit_strategy` (
 /*Data for the table `course_member_limit_strategy` */
 
 insert  into `course_member_limit_strategy`(`id`,`course_id`,`min_member`,`max_member`) values 
-(1,17,3,NULL),
-(2,20,3,NULL);
+(1,17,3,5),
+(2,20,3,5);
 
 /*Table structure for table `klass` */
 
@@ -1996,6 +1996,11 @@ insert  into `team_student`(`team_id`,`student_id`) values
 (13,175),
 (13,178),
 (13,189),
+(14,119),
+(14,121),
+(14,124),
+(14,126),
+(14,153),
 (15,164),
 (15,182),
 (15,186),
