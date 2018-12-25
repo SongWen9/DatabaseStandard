@@ -246,8 +246,8 @@ CREATE TABLE `course` (
 insert  into `course`(`id`,`teacher_id`,`course_name`,`introduction`,`presentation_percentage`,`question_percentage`,`report_percentage`,`team_start_time`,`team_end_time`,`team_main_course_id`,`seminar_main_course_id`) values 
 (16,3,'OOAD','面向对象分析与设计',40,30,30,'2018-09-15 00:00:21','2018-09-26 00:00:06',NULL,NULL),
 (17,3,'J2EE','javaEE',40,30,30,'2018-09-15 20:47:47','2018-09-26 20:48:00',16,NULL),
-(18,4,'SE','软件工程',40,30,30,'2018-12-19 20:52:03','2018-12-19 20:52:06',NULL,NULL),
-(19,5,'SE','软件工程',40,30,30,'2018-12-19 20:54:19','2018-12-19 20:54:21',NULL,NULL),
+(18,4,'SE','软件工程',40,30,30,'2018-12-19 20:52:03','2018-12-19 20:52:06',16,NULL),
+(19,5,'SE','软件工程',40,30,30,'2018-12-19 20:54:19','2018-12-19 20:54:21',16,NULL),
 (20,6,'.NET','刀奈特',40,30,30,'2018-12-19 20:55:53','2018-12-19 20:55:56',NULL,NULL);
 
 /*Table structure for table `course_member_limit_strategy` */
@@ -825,7 +825,33 @@ insert  into `klass_team`(`klass_id`,`team_id`) values
 (24,23),
 (24,25),
 (24,26),
-(24,27);
+(24,27),
+(25,3),
+(25,4),
+(25,5),
+(25,7),
+(25,8),
+(25,9),
+(25,11),
+(25,12),
+(25,15),
+(25,16),
+(25,19),
+(25,20),
+(25,21),
+(26,2),
+(26,6),
+(26,10),
+(26,13),
+(26,14),
+(26,17),
+(26,18),
+(27,22),
+(27,23),
+(27,24),
+(27,25),
+(27,26),
+(27,27);
 
 /*Table structure for table `member_limit_strategy` */
 
@@ -1614,12 +1640,14 @@ CREATE TABLE `share_team_application` (
   KEY `idx_main_course_id` (`main_course_id`),
   KEY `idx_sub_course_id` (`sub_course_id`),
   KEY `idx_sub_course_teacher_id` (`sub_course_teacher_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 /*Data for the table `share_team_application` */
 
 insert  into `share_team_application`(`id`,`main_course_id`,`sub_course_id`,`sub_course_teacher_id`,`status`) values 
-(1,16,17,3,1);
+(1,16,17,3,1),
+(2,16,18,4,1),
+(3,16,19,5,1);
 
 /*Table structure for table `student` */
 
@@ -1802,11 +1830,12 @@ DROP TABLE IF EXISTS `team`;
 
 CREATE TABLE `team` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `klass_id` bigint(20) unsigned NOT NULL COMMENT '班级序号',
-  `course_id` bigint(20) unsigned NOT NULL COMMENT '课程序号',
+  `klass_id` bigint(20) unsigned NOT NULL COMMENT '班级id',
+  `course_id` bigint(20) unsigned NOT NULL COMMENT '课程id',
   `leader_id` bigint(20) unsigned NOT NULL COMMENT '队长的学生id',
   `team_name` varchar(30) NOT NULL COMMENT '队伍名称',
   `team_serial` tinyint(4) unsigned NOT NULL COMMENT '队伍序号',
+  `klass_serial` tinyint(4) unsigned NOT NULL COMMENT '班级序号',
   `status` tinyint(4) unsigned NOT NULL COMMENT '队伍状态，不合法0、合法1、审核中2',
   PRIMARY KEY (`id`),
   KEY `idx_course_id` (`course_id`),
@@ -1816,33 +1845,33 @@ CREATE TABLE `team` (
 
 /*Data for the table `team` */
 
-insert  into `team`(`id`,`klass_id`,`course_id`,`leader_id`,`team_name`,`team_serial`,`status`) values 
-(2,22,16,197,'2-6',6,1),
-(3,22,16,160,'WEAK',7,1),
-(4,22,16,192,'j2ee',8,1),
-(5,22,16,183,'dotnet TIF小组',9,1),
-(6,21,16,122,'Intellij',2,1),
-(7,21,16,156,'FLAG',3,1),
-(8,21,16,108,'Knight',4,1),
-(9,22,16,187,'锦鲤',2,1),
-(10,21,16,116,'OJ',10,1),
-(11,22,16,190,'RBs',3,1),
-(12,21,16,150,'Beefcake',11,1),
-(13,22,16,163,'GHCT',4,1),
-(14,21,16,126,'Flyway',12,1),
-(15,22,16,182,'2-5',5,1),
-(16,22,16,176,'2018秋季智能教室JS爱好者小组',1,1),
-(17,21,16,135,'咕咕鸟',6,1),
-(18,21,16,142,'1-7',7,1),
-(19,21,16,113,'正经人',8,1),
-(20,21,16,129,'超励志小组',5,1),
-(21,21,16,141,'晚晚鸟',9,1),
-(22,23,16,211,'3-1',1,1),
-(23,23,16,207,'3-2',2,1),
-(24,23,16,221,'3-3',3,1),
-(25,23,16,208,'3-4',4,1),
-(26,23,16,206,'3-5',5,1),
-(27,23,16,205,'3-6',6,1);
+insert  into `team`(`id`,`klass_id`,`course_id`,`leader_id`,`team_name`,`team_serial`,`klass_serial`,`status`) values 
+(2,22,16,197,'2-6',6,2,1),
+(3,22,16,160,'WEAK',7,2,1),
+(4,22,16,192,'j2ee',8,2,1),
+(5,22,16,183,'dotnet TIF小组',9,2,1),
+(6,21,16,122,'Intellij',2,1,1),
+(7,21,16,156,'FLAG',3,1,1),
+(8,21,16,108,'Knight',4,1,1),
+(9,22,16,187,'锦鲤',2,2,1),
+(10,21,16,116,'OJ',10,1,1),
+(11,22,16,190,'RBs',3,2,1),
+(12,21,16,150,'Beefcake',11,1,1),
+(13,22,16,163,'GHCT',4,2,1),
+(14,21,16,126,'Flyway',12,1,1),
+(15,22,16,182,'2-5',5,2,1),
+(16,22,16,176,'2018秋季智能教室JS爱好者小组',1,2,1),
+(17,21,16,135,'咕咕鸟',6,1,1),
+(18,21,16,142,'1-7',7,1,1),
+(19,21,16,113,'正经人',8,1,1),
+(20,21,16,129,'超励志小组',5,1,1),
+(21,21,16,141,'晚晚鸟',9,1,1),
+(22,23,16,211,'3-1',1,3,1),
+(23,23,16,207,'3-2',2,3,1),
+(24,23,16,221,'3-3',3,3,1),
+(25,23,16,208,'3-4',4,3,1),
+(26,23,16,206,'3-5',5,3,1),
+(27,23,16,205,'3-6',6,3,1);
 
 /*Table structure for table `team_and_strategy` */
 
