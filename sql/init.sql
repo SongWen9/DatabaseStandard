@@ -1835,7 +1835,7 @@ CREATE TABLE `team` (
   `leader_id` bigint(20) unsigned NOT NULL COMMENT '队长的学生id',
   `team_name` varchar(30) NOT NULL COMMENT '队伍名称',
   `team_serial` tinyint(4) unsigned NOT NULL COMMENT '队伍序号',
-  `klass_serial` tinyint(4) unsigned NOT NULL COMMENT '班级序号',
+  `klass_serial` tinyint(4) unsigned DEFAULT NULL COMMENT '班级序号',
   `status` tinyint(4) unsigned NOT NULL COMMENT '队伍状态，不合法0、合法1、审核中2',
   PRIMARY KEY (`id`),
   KEY `idx_course_id` (`course_id`),
