@@ -208,10 +208,10 @@ insert  into `attendance`(`id`,`klass_seminar_id`,`team_id`,`team_order`,`is_pre
 DROP TABLE IF EXISTS `conflict_course_strategy`;
 
 CREATE TABLE `conflict_course_strategy` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) unsigned NOT NULL,
   `course_id` bigint(20) unsigned NOT NULL COMMENT '冲突课程',
   PRIMARY KEY (`id`,`course_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `conflict_course_strategy` */
 
@@ -1878,11 +1878,11 @@ insert  into `team`(`id`,`klass_id`,`course_id`,`leader_id`,`team_name`,`team_se
 DROP TABLE IF EXISTS `team_and_strategy`;
 
 CREATE TABLE `team_and_strategy` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) unsigned NOT NULL,
   `strategy_name` varchar(50) NOT NULL COMMENT '策略所属类标识',
   `strategy_id` bigint(20) unsigned NOT NULL COMMENT '组队策略id',
   PRIMARY KEY (`id`,`strategy_name`,`strategy_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `team_and_strategy` */
 
@@ -1895,11 +1895,11 @@ insert  into `team_and_strategy`(`id`,`strategy_name`,`strategy_id`) values
 DROP TABLE IF EXISTS `team_or_strategy`;
 
 CREATE TABLE `team_or_strategy` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) unsigned NOT NULL,
   `strategy_name` varchar(50) NOT NULL COMMENT '策略所属类的类名',
   `strategy_id` bigint(20) unsigned NOT NULL COMMENT '组队策略id',
   PRIMARY KEY (`id`,`strategy_name`,`strategy_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `team_or_strategy` */
 
@@ -1912,12 +1912,12 @@ insert  into `team_or_strategy`(`id`,`strategy_name`,`strategy_id`) values
 DROP TABLE IF EXISTS `team_strategy`;
 
 CREATE TABLE `team_strategy` (
-  `course_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '课程id',
+  `course_id` bigint(20) unsigned NOT NULL COMMENT '课程id',
   `strategy_serial` tinyint(4) unsigned NOT NULL COMMENT '课程组队策略序号',
   `strategy_name` varchar(50) NOT NULL COMMENT '策略所属类的类名',
   `strategy_id` bigint(20) unsigned NOT NULL COMMENT '策略id',
   PRIMARY KEY (`course_id`,`strategy_serial`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `team_strategy` */
 
