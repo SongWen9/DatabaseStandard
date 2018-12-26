@@ -1924,7 +1924,7 @@ CREATE TABLE `team_strategy` (
 insert  into `team_strategy`(`course_id`,`strategy_serial`,`strategy_name`,`strategy_id`) values 
 (16,1,'TeamAndStrategy',1),
 (16,2,'ConflictCourseStrategy',1),
-(16,3,'ConflictCourseStrategy',1);
+(16,3,'ConflictCourseStrategy',2);
 
 /*Table structure for table `team_student` */
 
